@@ -25,7 +25,7 @@ export function Final(){
         <View style={styles.fim}>
             <br></br><br></br><br></br>
             <TouchableOpacity style={styles.botao}>
-             <Text style={{color: 'white', fontSize:26}}>Logar</Text>
+             <Text style={{color: 'white', fontSize:26}}>Teste</Text>
             </TouchableOpacity>
         </View>
     )
