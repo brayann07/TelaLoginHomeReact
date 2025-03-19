@@ -1,11 +1,12 @@
+import { Touchable, TouchableOpacity } from 'react-native';
 import {Text,View,StyleSheet} from 'react-native';
 import { Button, TextInput } from 'react-native-web';
 export default function Login(){
     return( 
     <View style={styles.container}>
-            <br></br><br></br><br></br><br></br>
-            <EntradaDeDados/>
-            <Final/>
+        <br></br><br></br><br></br><br></br>
+        <EntradaDeDados/>
+        <Final/>
     </View>
     )
 }
@@ -15,7 +16,7 @@ export function EntradaDeDados(){
         <Text style={styles.textocima}>Nome</Text>
         <TextInput style={styles.entradadedados} placeholder='Nome'></TextInput>
         <Text style={styles.textocima}>Telefone</Text>
-        <TextInput style={styles.entradadedados} placeholder='Telefone'></TextInput>   
+        <TextInput style={styles.entradadedados} placeholder='Telefone' secureTextEntry='false'></TextInput>   
         </View>
     )
 }
@@ -23,9 +24,9 @@ export function Final(){
     return(
         <View style={styles.fim}>
             <br></br><br></br><br></br>
-        
-            <Button style={styles.botao} title='Logar' color='#4169E1' ></Button>
-            
+            <TouchableOpacity style={styles.botao}>
+             <Text style={{color: 'white', fontSize:26}}>Logar</Text>
+            </TouchableOpacity>
         </View>
     )
 }
@@ -42,7 +43,6 @@ const styles = StyleSheet.create({
     },
     fim:{
         flex:0.5,
-        margin:'auto',
     },
     textocima:{
         flex:1,
@@ -53,8 +53,15 @@ const styles = StyleSheet.create({
         color:'white',
     },
     botao:{
-       width:500,
-       height:100,
+       width:200,
+       height:60,
+       textAlign:'center',
+       margin:'auto',
+       alignItems:'center',
+       justifyContent:'center',
+       backgroundColor:'#4169E1',
+       borderWidth: 2,
+       borderRadius: 20,
     },
     entradadedados:{
         textAlign:'center',
