@@ -2,12 +2,13 @@ import { Touchable, TouchableOpacity } from 'react-native';
 import {Text,View,StyleSheet} from 'react-native';
 import { Button, TextInput } from 'react-native-web';
 import Home from './home';
-import { useNavigation } from '@react-navigation/native';
+
 export default function Login({navigation}){
     return( 
     <View style={styles.container}>
         <br></br><br></br><br></br><br></br>
         <View style={styles.meio}>  
+        
         <Text style={styles.textocima}>Login</Text>
         <TextInput style={styles.entradadedados} placeholder='Nome'></TextInput>
         <TextInput style={styles.entradadedados} placeholder='Telefone' secureTextEntry='false'></TextInput>   
