@@ -1,20 +1,23 @@
-
-import Gallery, { Favorites, Profile} from './components/Gallery';
-import {View, StyleSheet, ScrollView , Text} from 'react-native'
+import 'react-native-gesture-handler';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
 import Home from './screens/home';
 import Login from './screens/login';
-import 'react-native-gesture-handler';
 export default function App() {
-  return (
-    <View style={styles.container}>
-    
-    {/* <Home/> descomenta para ver o home! */}
-    </View>
-  );
-};
 
-const styles = StyleSheet.create({
-  container:{ //serve para ocupar toda tela
-    flex:1,
-  },
-})
+  const Stack = createStackNavigator();
+
+  return (
+    
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name='Login' component={Login}/>
+        <Stack.Screen name='Home' component={Home}/>
+       
+        
+      </Stack.Navigator>
+    </NavigationContainer>
+
+
+  );
+}

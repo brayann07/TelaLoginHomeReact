@@ -1,35 +1,29 @@
 import { Touchable, TouchableOpacity } from 'react-native';
 import {Text,View,StyleSheet} from 'react-native';
 import { Button, TextInput } from 'react-native-web';
-export default function Login(){
+import Home from './home';
+import { useNavigation } from '@react-navigation/native';
+export default function Login({navigation}){
     return( 
     <View style={styles.container}>
         <br></br><br></br><br></br><br></br>
-        <EntradaDeDados/>
-        <Final/>
+        <View style={styles.meio}>  
+        <Text style={styles.textocima}>Login</Text>
+        <TextInput style={styles.entradadedados} placeholder='Nome'></TextInput>
+        <TextInput style={styles.entradadedados} placeholder='Telefone' secureTextEntry='false'></TextInput>   
+        </View>
+        <View style={styles.fim}>
+            <br></br>
+            <TouchableOpacity style={styles.botao} 
+            onPress={() => navigation.navigate('Home')}
+            >
+             <Text style={{color: 'white', fontSize:20}}>Logar</Text>
+            </TouchableOpacity>
+        </View>
     </View>
     )
 }
-export function EntradaDeDados(){
-    return(
-        <View style={styles.meio}>  
-        <Text style={styles.textocima}>Nome</Text>
-        <TextInput style={styles.entradadedados} placeholder='Nome'></TextInput>
-        <Text style={styles.textocima}>Telefone</Text>
-        <TextInput style={styles.entradadedados} placeholder='Telefone' secureTextEntry='false'></TextInput>   
-        </View>
-    )
-}
-export function Final(){
-    return(
-        <View style={styles.fim}>
-            <br></br><br></br><br></br>
-            <TouchableOpacity style={styles.botao}>
-             <Text style={{color: 'white', fontSize:26}}>Teste</Text>
-            </TouchableOpacity>
-        </View>
-    )
-}
+
 const styles = StyleSheet.create({
     container:{ 
       backgroundColor:'#5f9ea0',
@@ -37,18 +31,19 @@ const styles = StyleSheet.create({
       fontFamily:'Arial',
     },
     meio:{
-        flex:1,
+        flex:0.5,
         margin:'auto',
         gap:40,
     },
     fim:{
-        flex:0.5,
+        flex:1.2,
+        
     },
     textocima:{
         flex:1,
-        fontSize: 50,
+        fontSize: 40,
         textAlign:'center',
-        marginTop:70,
+        marginTop:10,
         fontFamily: 'Arial',
         color:'white',
     },
@@ -62,14 +57,16 @@ const styles = StyleSheet.create({
        backgroundColor:'#4169E1',
        borderWidth: 2,
        borderRadius: 20,
+       marginTop: 150,
     },
     entradadedados:{
         textAlign:'center',
         alignSelf:'center',
         backgroundColor:'white',
         width:300,
-        height:300,
-        borderWidth: 3,
+        fontSize:30,
+        height:500,
+        borderWidth: 2,
         borderRadius: 20,
     }
   })
