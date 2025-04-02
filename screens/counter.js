@@ -1,6 +1,7 @@
 import {View, Text,StyleSheet, TouchableOpacity} from 'react-native';
 import { useFonts,Raleway_600SemiBold} from '@expo-google-fonts/raleway';
 import { useState } from 'react';
+import { TextInput } from 'react-native-web';
 
 
 
@@ -11,7 +12,9 @@ export default function Counter(){
         setContador(contador + 1);
     }
     function Diminiuir(){
-        setContador(contador - 1);
+        if(contador >=1){
+            setContador(contador - 1);
+        }
     }
 
    /*  FONTES */
@@ -40,6 +43,22 @@ export default function Counter(){
         >Menos
         </TouchableOpacity>
         </View>
+
+        <View>
+        <TextInput 
+        style={styles.entradadedados} 
+        placeholder='Nome'>
+        </TextInput><br></br>
+
+        <TextInput 
+        style={styles.entradadedados} 
+        placeholder='Email' 
+        secureTextEntry='true'>
+        </TextInput> 
+        </View>
+       
+
+        
      </View>
     )
 }
@@ -70,5 +89,16 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         fontSize:20,
         fontFamily:'Raleway_600SemiBold',
+    },
+    entradadedados:{
+        textAlign:'center',
+        alignSelf:'center',
+        backgroundColor:'white',
+        width:250,
+        fontSize:30,
+        height:50,
+        borderWidth: 2,
+        borderRadius: 20,
+        fontFamily:'Raleway_500Medium',
     }
 });
