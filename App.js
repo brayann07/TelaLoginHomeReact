@@ -2,10 +2,12 @@
 import Home from './screens/home';
 import Login from './screens/login';
 import Feed from './screens/feed';
+import Counter from './screens/counter';
 
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import Entypo from '@expo/vector-icons/Entypo';
+import ContadorIcone from '@expo/vector-icons/MaterialCommunityIcons';
 
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
@@ -33,6 +35,10 @@ function BottomTabs(){
         <BottomTab.Screen name='Feed' component={Feed}
         options={{
           tabBarIcon : () => <FontAwesome name="feed" size={24} color="black" />
+        }}/>
+        <BottomTab.Screen name='Counter' component={Counter}
+        options={{
+          tabBarIcon : () => <ContadorIcone name="counter" size={24} color="black" />
         }}/>
         </BottomTab.Navigator>
     )

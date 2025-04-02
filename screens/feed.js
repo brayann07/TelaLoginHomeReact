@@ -26,7 +26,7 @@ export default function Feed(){
             <Text style={styles.textodomeio}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet nisi vel lectus pellentesque blandit. Nunc et sollicitudin risus. Fusce feugiat magna aliquam tristique euismod. Curabitur pretium, diam nec feugiat viverra, dolor lorem interdum tortor, at imperdiet tellus sapien id turpis.</Text>
             <Text style={styles.textodofim}>
-                #dogsempoderados #cachorrao
+                #dogsempoderados #cachorrao #🐾🐾
             </Text>
             <TouchableOpacity style={styles.botao} onPress={() => navigation.navigate('Home')}>Saiba Mais!</TouchableOpacity>
         </View>
