@@ -2,8 +2,15 @@ import { Touchable, TouchableOpacity } from 'react-native';
 import {Text,View,StyleSheet} from 'react-native';
 import { Button, TextInput } from 'react-native-web';
 import Home from './home';
-
+import { useFonts,Raleway_100Thin, Raleway_400Regular, Raleway_500Medium } from '@expo-google-fonts/raleway';
 export default function Login({navigation}){
+    const [ fontLoaded ] = useFonts({
+        Raleway_400Regular,
+        Raleway_500Medium,
+    });
+    if(!fontLoaded){
+        return false;
+    }
     return( 
     <View style={styles.container}>
         <br></br><br></br><br></br><br></br>
@@ -16,7 +23,7 @@ export default function Login({navigation}){
         <View style={styles.fim}>
             <br></br>
             <TouchableOpacity style={styles.botao} 
-            onPress={() => navigation.navigate('Home')}
+            onPress={() => navigation.navigate('HomeTab')}
             >
              <Text style={{color: 'white', fontSize:20}}>Logar</Text>
             </TouchableOpacity>
@@ -29,7 +36,7 @@ const styles = StyleSheet.create({
     container:{ 
       backgroundColor:'#5f9ea0',
       flex:1,
-      fontFamily:'Arial',
+      fontFamily:'Raleway_500Medium',
     },
     meio:{
         flex:0.5,
@@ -45,7 +52,7 @@ const styles = StyleSheet.create({
         fontSize: 40,
         textAlign:'center',
         marginTop:10,
-        fontFamily: 'Arial',
+        fontFamily: 'Raleway_500Medium',
         color:'white',
     },
     botao:{
@@ -69,5 +76,6 @@ const styles = StyleSheet.create({
         height:500,
         borderWidth: 2,
         borderRadius: 20,
+        fontFamily:'Raleway_500Medium',
     }
   })

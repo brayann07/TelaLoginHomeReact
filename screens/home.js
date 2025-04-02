@@ -1,8 +1,16 @@
 import {Text,View,Image,StyleSheet, ImageBackground} from 'react-native';
 import ImagemFundo from '../assets/fundo.png';
-
+import { useFonts,Raleway_100Thin, Raleway_400Regular, Raleway_500Medium } from '@expo-google-fonts/raleway';
 export default function Home(){
+        const [ fontLoaded ] = useFonts({
+            Raleway_400Regular,
+            Raleway_500Medium,
+        });
+        if(!fontLoaded){
+            return false;
+        }
     return(
+        
         <View style={styles.container}>
             <ImageBackground style={{flex:1,width:'100%',height:'100%'}}source={ImagemFundo}>
             <br></br><br></br><br></br>
@@ -59,22 +67,24 @@ const styles = StyleSheet.create({
     textocima:{
         alignSelf:'flex-start',
         fontSize:20,
-        fontFamily:'Arial',
+        fontFamily:'Raleway_500Medium',
         flex:1,
-
+        color: 'black',
     },
     textomeio:{
         alignSelf:'flex-end',
         fontSize:20,
-        fontFamily:'Arial',
+        fontFamily:'Raleway_500Medium',
         textAlign:'right',
         flex:1,
+        color: 'black',
     },
     textofim:{
         alignSelf:'center',
         textAlign:'center',
         fontSize:20,
-        fontFamily:'Arial',
+        fontFamily:'Raleway_500Medium',
         flex:1,
+        color: 'black',
     },
   })
