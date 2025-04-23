@@ -1,8 +1,9 @@
 import { View,Text,StyleSheet, FlatList ,ImageBackground, Image} from 'react-native'
-
+import Cards from '../components/Cards';
 import ImagemFeed from '../assets/fundofeed.jpg'
 import { useState } from 'react';
 import { useFonts,Raleway_600SemiBold,Raleway_700Bold} from '@expo-google-fonts/raleway';
+
 export default function Produtos(){
     const [produto,setProdutos] = useState([
         {id:1, nome: 'Osso', valor : 10.00, img:'https://www.petz.com.br/blog/wp-content/uploads/2021/12/cachorro-pode-comer-osso-de-galinha.jpg'},
@@ -30,11 +31,11 @@ export default function Produtos(){
                 <FlatList showsVerticalScrollIndicator={false}
                     data={produto}
                     renderItem={({item}) => (
-                        <View style={styles.card}>
-                            <Text style={styles.textoTexto}>{item.nome}</Text>
-                            <Text style={styles.textoTexto}>{item.valor}</Text>  
-                            <Image source={{uri: item.img}} style={{width:200,height:100}}></Image>
-                        </View>
+                        <Cards
+                        nome={item.nome}
+                        valor={item.valor}
+                        img={item.img}
+                        />
                     )}
                     keyExtractor={item => item.id}
                 />
