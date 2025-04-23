@@ -8,6 +8,10 @@ import { TextInput } from 'react-native-web';
 
 export default function Counter(){
     const [contador,setContador] = useState(0);
+    const[nome, setNome] = useState("")
+    const[email, setEmail] = useState("")
+
+    
     function Aumentar(){
         setContador(contador + 1);
     }
@@ -18,8 +22,6 @@ export default function Counter(){
     }
 
    /*  FONTES */
-
-
     const [ fontLoaded ] = useFonts({
         Raleway_600SemiBold,
     });
@@ -47,16 +49,20 @@ export default function Counter(){
         <View>
         <TextInput 
         style={styles.entradadedados} 
+        value={nome}
+        onChangeText={setNome}
         placeholder='Nome'>
         </TextInput><br></br>
 
         <TextInput 
         style={styles.entradadedados} 
         placeholder='Email' 
+        value={email}
+        onChangeText={setEmail}
         secureTextEntry='true'>
         </TextInput> 
         </View>
-       
+       <Text style={{textAlign:'center',fontSize:20}}>oi, {nome}, seu email é {email}</Text>
 
         
      </View>

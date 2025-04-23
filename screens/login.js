@@ -1,7 +1,8 @@
 import { Touchable, TouchableOpacity } from 'react-native';
-import {Text,View,StyleSheet} from 'react-native';
-import { Button, TextInput } from 'react-native-web';
+import {Text,View,StyleSheet, TextInput} from 'react-native';
+
 import Home from './home';
+
 import { useFonts,Raleway_100Thin, Raleway_400Regular, Raleway_500Medium } from '@expo-google-fonts/raleway';
 export default function Login({navigation}){
     const [ fontLoaded ] = useFonts({

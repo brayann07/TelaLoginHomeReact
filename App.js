@@ -3,11 +3,13 @@ import Home from './screens/home';
 import Login from './screens/login';
 import Feed from './screens/feed';
 import Counter from './screens/counter';
+import Produtos from './screens/products';
 
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import Entypo from '@expo/vector-icons/Entypo';
 import ContadorIcone from '@expo/vector-icons/MaterialCommunityIcons';
+import Feather from '@expo/vector-icons/Feather';
 
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
@@ -40,6 +42,10 @@ function BottomTabs(){
         options={{
           tabBarIcon : () => <ContadorIcone name="counter" size={24} color="black" />
         }}/>
+        <BottomTab.Screen name='Produtos' component={Produtos}
+        options={{
+          tabBarIcon : () => <Feather name="shopping-bag" size={24} color="black" />
+        }}/>
         </BottomTab.Navigator>
     )
 }
@@ -51,7 +57,7 @@ export default function App() {
   return (
     <NavigationContainer>
      <Stack.Navigator>
-     <Stack.Screen name='Login' component={Login}/>
+     <Stack.Screen name='Login' component={Login} options={{headerShown:false}}/>
      <Stack.Screen name='HomeTab' options={{headerShown:false}} component={BottomTabs}/>
 
      </Stack.Navigator>

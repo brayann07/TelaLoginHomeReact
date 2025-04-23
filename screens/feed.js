@@ -3,7 +3,7 @@ import imagem from '../assets/cachorro.webp';
 import ImagemFeed from '../assets/fundofeed.jpg'
 import { useFonts,Raleway_100Thin, Raleway_400Regular, Raleway_500Medium, Raleway_600SemiBold, Raleway_900Black_Italic, Raleway_900Black, Raleway_700Bold } from '@expo-google-fonts/raleway';
 import { ImageBackground } from 'react-native-web';
-export default function Feed(){
+export default function Feed(navigation){
     const [ fontLoaded ] = useFonts({
         Raleway_400Regular,
         Raleway_700Bold,
@@ -33,7 +33,7 @@ export default function Feed(){
         </ImageBackground>
     )
 }
-const styles = StyleSheet.create({
+const styles = new StyleSheet.create({
     container:{
         flex:1,
         alignItems:'center',
