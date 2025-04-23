@@ -1,6 +1,7 @@
 import {View, Text, StyleSheet, Image} from 'react-native'
 import { useFonts,Raleway_600SemiBold,Raleway_700Bold} from '@expo-google-fonts/raleway';
 
+
 export default function Cards({nome,valor,img}){
     const [ fontLoaded ] = useFonts({
         Raleway_600SemiBold,
@@ -8,9 +9,14 @@ export default function Cards({nome,valor,img}){
     });
     return(
         <View style={styles.card}>
-            <Text style={styles.textoTexto}>{nome}</Text>
-            <Text style={styles.textoTexto}>R${valor}.00</Text>  
-            <Image source={{uri:img}} style={{width:200,height:100}}></Image>
+            <View style={{textAlign:'center'}}>
+            <Image source={{uri:img}} style={{width:180,height:150,borderWidth:1,borderRadius:30}}></Image>
+            </View>
+            <View style={{textAlign:'center',flex:1,}}>
+                <Text style={styles.textoTexto}>{nome}</Text>
+            <Text style={styles.textoTexto}>R${valor}</Text>   
+            </View>
+           
         </View>
     )
 }
@@ -21,6 +27,7 @@ const styles = StyleSheet.create({
         fontFamily:'Raleway_700Bold',
     },
     card:{ 
+      flexDirection:'row',
       alignSelf:'center',
       width:300,
       height:200,
