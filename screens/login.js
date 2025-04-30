@@ -1,17 +1,35 @@
 import { Touchable, TouchableOpacity } from 'react-native';
 import {Text,View,StyleSheet, TextInput} from 'react-native';
+import { useState } from 'react';
 
-import Cadastro from './signin';
-import Home from './home';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../controller';
+
 
 import { useFonts,Raleway_100Thin, Raleway_400Regular, Raleway_500Medium } from '@expo-google-fonts/raleway';
+
+
 export default function Login({navigation}){
+    const[email,setEmail] = useState("")
+    const[senha,setSenha] = useState("")
+
     const [ fontLoaded ] = useFonts({
         Raleway_400Regular,
         Raleway_500Medium,
     });
     if(!fontLoaded){
         return false;
+    }
+
+    const VerificaUser = () =>{
+        signInWithEmailAndPassword(auth,email,senha).
+        then(userCredential => {
+            console.log('Usuario Logado',userCredential.user.email);
+            navigation.navigate('HomeTab')
+        })
+        .catch((error) => {
+            console.log('Erro ao logar',error.message);
+        });
     }
     return( 
     <View style={styles.container}>
@@ -20,14 +38,14 @@ export default function Login({navigation}){
         <br></br>
         <Text style={styles.textocima}>Login</Text>
         <br></br><br></br><br></br>
-        <TextInput style={styles.entradadedados} placeholder='Nome'></TextInput>
+        <TextInput style={styles.entradadedados} placeholder='E-mail' value={email} onChangeText={setEmail}></TextInput>
         <br></br>
-        <TextInput style={styles.entradadedados} placeholder='Telefone' secureTextEntry='false'></TextInput>   
+        <TextInput style={styles.entradadedados} placeholder='Senha' secureTextEntry='false' value={senha} onChangeText={setSenha}></TextInput>   
         </View>
         <View>
             <br></br>
             <TouchableOpacity style={styles.botao} 
-            onPress={() => navigation.navigate('HomeTab')}>
+            onPress={VerificaUser}>
                 <Text style={{color: 'white', fontSize:20}}>Entrar</Text>
             </TouchableOpacity>
             <br></br>
