@@ -2,14 +2,16 @@ import { Touchable, TouchableOpacity } from 'react-native';
 import {Text,View,StyleSheet, TextInput} from 'react-native';
 import { useState } from 'react';
 
-import { collection,addDoc } from 'firebase/firestore';
+import { collection,addDoc,updateDoc,deleteDoc,doc } from 'firebase/firestore';
 import { db } from '../controller';
 
 
 import { useFonts,Raleway_100Thin, Raleway_400Regular, Raleway_500Medium } from '@expo-google-fonts/raleway';
 
 
-export default function CadastroProds({navigation}){
+export default function CadastroProds(){
+
+    const[codigo,setCodigo] = useState("")
     const[nome,setNome] = useState("")
     const[valor,setValor] = useState("")
     const[imagem,setImagem] = useState("")
@@ -17,10 +19,8 @@ export default function CadastroProds({navigation}){
     const cadastrarProduto = async () => {
         // so uma ajudinha externa
           try {
-            await addDoc(collection(db, 'produtos'), {nome,valor: parseFloat(valor),imagem,
-            });
+            await addDoc(collection(db, 'produtos'), {nome,valor: parseFloat(valor),imagem});
             console.log('cadastrado no db!');
-            setCodigo('');
             setNome('');
             setValor('');
             setImagem('');
@@ -28,7 +28,23 @@ export default function CadastroProds({navigation}){
             console.log("Erro", error);
         }
     };
-    
+   
+    const alterarProduto = async (id) => {
+        try {
+            const produtoRef = doc(db, 'produtos', id);
+            await updateDoc(produtoRef, {
+                nome,
+                valor: parseFloat(valor),
+                imagem
+            });
+            console.log('altero!!');
+            setNome('');
+            setValor('');
+            setImagem('');
+        } catch (error) {
+            console.log("nao altero:", error);
+        }
+    };
     const [ fontLoaded ] = useFonts({
         Raleway_400Regular,
         Raleway_500Medium,
@@ -39,6 +55,7 @@ export default function CadastroProds({navigation}){
     return( 
     <View style={styles.container}>
         <Text style={styles.textocima}>Cadastro Produtos</Text>
+        <TextInput style={styles.entradadedados} placeholder='Codigo' value={codigo} onChangeText={setCodigo}/>
         <TextInput style={styles.entradadedados} placeholder='Nome' value={nome} onChangeText={setNome}/>
         <TextInput style={styles.entradadedados} placeholder='Valor' value={valor} onChangeText={setValor}/>
         <TextInput style={styles.entradadedados} placeholder='Imagem em URL' value={imagem} onChangeText={setImagem}/>
@@ -48,6 +65,23 @@ export default function CadastroProds({navigation}){
             </Text>
         </TouchableOpacity>
 
+        <TouchableOpacity style={styles.botaoCadastraSe} onPress={alterarProduto}>
+            <Text style={{textAlign:'center',fontSize:20}}>
+                Alterar
+            </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.botaoCadastraSe} onPress={cadastrarProduto}>
+            <Text style={{textAlign:'center',fontSize:20}}>
+                Excluir
+            </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.botaoCadastraSe} onPress={cadastrarProduto}>
+            <Text style={{textAlign:'center',fontSize:20}}>
+                Pesquisar
+            </Text>
+        </TouchableOpacity>
     </View>
     )
 }
@@ -60,7 +94,7 @@ const styles = StyleSheet.create({
       fontFamily:'Raleway_500Medium',
     },
     entradadedados:{
-        marginTop:40,
+        marginTop:30,
         textAlign:'center',
         backgroundColor:'white',
         width:300,
