@@ -25,7 +25,7 @@ export default function Login({navigation}){
         signInWithEmailAndPassword(auth,email,senha).
         then(userCredential => {
             console.log('Usuario Logado',userCredential.user.email);
-            navigation.navigate('HomeTab')
+            navigation.navigate('HomeTab');
         })
         .catch((error) => {
             console.log('Erro ao logar',error.message);

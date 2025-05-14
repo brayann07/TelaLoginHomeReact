@@ -5,18 +5,20 @@ import Feed from './screens/feed';
 import Counter from './screens/counter';
 import Produtos from './screens/products';
 import Cadastro from './screens/signin';
-
+import CadastroProds from './screens/cadastrarprods';
+//
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import Entypo from '@expo/vector-icons/Entypo';
 import ContadorIcone from '@expo/vector-icons/MaterialCommunityIcons';
 import Feather from '@expo/vector-icons/Feather';
-
+//
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { BottomTabBar, createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-
+//
 
 function BottomTabs(){
   const BottomTab = createBottomTabNavigator();
@@ -47,11 +49,13 @@ function BottomTabs(){
         options={{
           tabBarIcon : () => <Feather name="shopping-bag" size={24} color="black" />
         }}/>
+        <BottomTab.Screen name='CadastroProds' component={CadastroProds}
+        options={{
+          tabBarIcon : () => <MaterialIcons name="admin-panel-settings" size={24} color="black" />
+        }}/>
         </BottomTab.Navigator>
     )
 }
-
-
 
 export default function App() {
   const Stack = createStackNavigator();

@@ -10,8 +10,7 @@ import { useFonts,Raleway_100Thin, Raleway_400Regular, Raleway_500Medium } from 
 export default function Cadastro({navigation}){
     const[email,setEmail] = useState("")
     const[senha,setSenha] = useState("")
-
-    const cadastroUser = () => {
+    const cadastroUser = () =>  { //  () =>  <- é uma função constante
         createUserWithEmailAndPassword(auth,email,senha).then((userCredential) => {
             console.log('Cadastrado!',
             userCredential.user.email);
@@ -38,22 +37,16 @@ export default function Cadastro({navigation}){
         <br></br><br></br><br></br>
         <TextInput style={styles.entradadedados} placeholder='E-mail' value={email} onChangeText={setEmail}></TextInput>
         <br></br>
-        <TextInput style={styles.entradadedados} placeholder='Senha' secureTextEntry='false' value={senha} onChangeText={setSenha}></TextInput>   
+        <TextInput style={styles.entradadedados} placeholder='Senha(min 6)' secureTextEntry='false' value={senha} onChangeText={setSenha}></TextInput>   
         </View>
         <br></br>
         <View>
-            <TouchableOpacity style={styles.botao} 
-            >
-             <Text style={{color: 'white', fontSize:20}}>Logar</Text>
+            <TouchableOpacity style={styles.botao} onPress={cadastroUser}>
+                <Text style={{color: 'white', fontSize:20}}>Cadastre-se</Text>
             </TouchableOpacity>
             <br></br>
-            <TouchableOpacity style={styles.botao} 
-                onPress={() => navigation.navigate('Login')}>
-                <Text style={{color: 'white', fontSize:20}}
-                onPress={cadastroUser}
-
-                >Cadastre-se</Text>
-            </TouchableOpacity>
+             <Text style={{color: 'white', textDecorationLine: 'underline',fontSize:20,textAlign:'center'}} onPress={() => navigation.navigate('Login')}>Voltar para Login</Text>
+            
         </View>
     </View>
     )

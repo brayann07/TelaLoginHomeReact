@@ -1,15 +1,31 @@
 import { View,Text,StyleSheet, FlatList ,ImageBackground, Image} from 'react-native'
 import Cards from '../components/Cards';
 import ImagemFeed from '../assets/fundofeed.jpg'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { db } from '../controller';
+import { collection,getDocs } from 'firebase/firestore';
 import { useFonts,Raleway_600SemiBold,Raleway_700Bold} from '@expo-google-fonts/raleway';
 
 export default function Produtos(){
-    const [produto,setProdutos] = useState([
-        {id:1, nome: 'Osso', valor : 10.00, img:'https://www.petz.com.br/blog/wp-content/uploads/2021/12/cachorro-pode-comer-osso-de-galinha.jpg'},
+    const [produto,setProdutos] = useState([])
+        /* {id:1, nome: 'Osso', valor : 10.00, img:'https://www.petz.com.br/blog/wp-content/uploads/2021/12/cachorro-pode-comer-osso-de-galinha.jpg'},
         {id:2, nome: 'Fantasia', valor : 8.00, img:'https://i.pinimg.com/564x/f0/06/38/f0063879efc56003dbb1f2c3e5122802.jpg'},
-        {id:3, nome: 'Batata', valor : 12.00, img:'https://blog-static.petlove.com.br/wp-content/uploads/2018/12/cachorro-batata.jpg'},
-    ])
+        {id:3, nome: 'Batata', valor : 12.00, img:'https://blog-static.petlove.com.br/wp-content/uploads/2018/12/cachorro-batata.jpg'}, */
+        useEffect(() =>{
+            async function carregarProdutos() {
+                try{
+                    const querySnapShot = await getDocs(collection(db, 'produtos'));
+                    const lista = [];
+                    querySnapShot.forEach((doc) =>{
+                        lista.push({id: doc.id, ...doc.data()});
+                    });
+                    setProdutos(lista);
+                } catch(error){
+                    console.log("Erro ao buscar produtos:",error);
+                }
+            }
+            carregarProdutos();
+        }, []);
     const [ fontLoaded ] = useFonts({
             Raleway_600SemiBold,
             Raleway_700Bold,
@@ -34,7 +50,7 @@ export default function Produtos(){
                         <Cards
                         nome={item.nome}
                         valor={item.valor}
-                        img={item.img}
+                        img={item.imagem}
                         />
                     )}
                     keyExtractor={item => item.id}
