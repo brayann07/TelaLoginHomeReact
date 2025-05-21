@@ -1,12 +1,13 @@
 import { View,Text,StyleSheet, FlatList ,ImageBackground, Image} from 'react-native'
 import Cards from '../components/Cards';
 import ImagemFeed from '../assets/fundofeed.jpg'
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { db } from '../controller';
 import { collection,getDocs } from 'firebase/firestore';
 import { useFonts,Raleway_600SemiBold,Raleway_700Bold} from '@expo-google-fonts/raleway';
-
-export default function Produtos(){
+import { useCarrinho } from '../components/ProviderCarrinho';
+export default function Produtos({navigation}){
+    const {addProducts} = useCarrinho();
     const [produto,setProdutos] = useState([])
         /* {id:1, nome: 'Osso', valor : 10.00, img:'https://www.petz.com.br/blog/wp-content/uploads/2021/12/cachorro-pode-comer-osso-de-galinha.jpg'},
         {id:2, nome: 'Fantasia', valor : 8.00, img:'https://i.pinimg.com/564x/f0/06/38/f0063879efc56003dbb1f2c3e5122802.jpg'},
@@ -51,6 +52,10 @@ export default function Produtos(){
                         nome={item.nome}
                         valor={item.valor}
                         img={item.imagem}
+                        comprar={() => {
+                            addProducts(item);
+                            navigation.navigate("Carrinho");
+                        }}
                         />
                     )}
                     keyExtractor={item => item.id}

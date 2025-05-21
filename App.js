@@ -6,7 +6,9 @@ import Counter from './screens/counter';
 import Produtos from './screens/products';
 import Cadastro from './screens/signin';
 import CadastroProds from './screens/cadastrarprods';
+import Carrinho from './screens/carrinho';
 //
+import AntDesign from '@expo/vector-icons/AntDesign';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
@@ -14,6 +16,7 @@ import Entypo from '@expo/vector-icons/Entypo';
 import ContadorIcone from '@expo/vector-icons/MaterialCommunityIcons';
 import Feather from '@expo/vector-icons/Feather';
 //
+import { ProviderCarrinho } from './components/ProviderCarrinho';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { BottomTabBar, createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -53,6 +56,10 @@ function BottomTabs(){
         options={{
           tabBarIcon : () => <MaterialIcons name="admin-panel-settings" size={24} color="black" />
         }}/>
+         <BottomTab.Screen name='Carrinho' component={Carrinho}
+        options={{
+          tabBarIcon : () => <AntDesign name="shoppingcart" size={24} color="black" />
+        }}/>
         </BottomTab.Navigator>
     )
 }
@@ -60,12 +67,14 @@ function BottomTabs(){
 export default function App() {
   const Stack = createStackNavigator();
   return (
-    <NavigationContainer>
-     <Stack.Navigator>
-     <Stack.Screen name='Login' component={Login} options={{headerShown:false}}/>
-     <Stack.Screen name='HomeTab' options={{headerShown:false}} component={BottomTabs}/>
-     <Stack.Screen name='Cadastro' component={Cadastro}  options={{headerShown:false}}/>
-     </Stack.Navigator>
-    </NavigationContainer>
+    <ProviderCarrinho>
+      <NavigationContainer>
+        <Stack.Navigator>
+        <Stack.Screen name='Login' component={Login} options={{headerShown:false}}/>
+        <Stack.Screen name='HomeTab' options={{headerShown:false}} component={BottomTabs}/>
+        <Stack.Screen name='Cadastro' component={Cadastro}  options={{headerShown:false}}/>
+        </Stack.Navigator>
+      </NavigationContainer>
+    </ProviderCarrinho>
   );
 }
