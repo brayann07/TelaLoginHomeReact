@@ -1,6 +1,8 @@
 import { View, Text, Image, StyleSheet, FlatList} from "react-native";
 import { useFonts,Raleway_600SemiBold,Raleway_700Bold} from '@expo-google-fonts/raleway';
 import { useCarrinho } from "../components/ProviderCarrinho";
+import Cards from "../components/Cards";
+
 export default function Carrinho(){
     const [ fontLoaded ] = useFonts({
         Raleway_600SemiBold,
@@ -9,21 +11,19 @@ export default function Carrinho(){
     if(!fontLoaded){
         return false;
     }
-    const {carrinho} = useCarrinho();
+    const {carrinho, removerProduto} = useCarrinho();
     return(
         <View style={styles.container}>
         <Text style={{fontFamily:'Raleway_700Bold', fontSize:40,textAlign:'center'}}>Produtos no Carrinho</Text>
         <FlatList
         data={carrinho}
-        renderItem={({item}) => ( 
-        <View style={styles.card}>
-            <Image source={{uri: item.imagem}} style={styles.imagem}/>
-            <View>
-                <Text style={styles.textoCart}></Text>
-                <Text style={styles.textoCart}>{item.nome}</Text>
-                <Text style={styles.textoCart}>R${item.valor}</Text>
-            </View>
-        </View>
+        renderItem={({item, index}) => ( 
+         <Cards
+            nome={item.nome}
+            valor={item.valor}
+            img={item.imagem}
+            remover = {() => removerProduto(index)}
+        />
         )} 
         /> 
         </View>
